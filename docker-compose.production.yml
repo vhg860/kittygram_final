@@ -1,10 +1,3 @@
-version: '3'
-
-volumes:
-  pg_data:
-  static:
-  media:
-
 services:
   db:
     image: postgres:13.10
@@ -18,7 +11,7 @@ services:
       - static:/static
       - media:/app/media
   frontend:
-    image: vhg860/kittygram_frontend/
+    image: vhg860/kittygram_frontend
     env_file: .env
     command: cp -r /app/build/. /static/
     volumes:
