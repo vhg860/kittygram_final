@@ -15,20 +15,20 @@ services:
     image: vhg860/kittygram_backend
     env_file: .env
     volumes:
-      - static:/backend_static/
-      - media:/app/media/
+      - static:/backend_static
+      - media:/media
   frontend:
     image: vhg860/kittygram_frontend
     env_file: .env
-    command: cp -r /app/build/. /static/
+    command: cp -r /app/build/. /frontend_static/
     volumes:
-      - static:/static/
+      - static:/frontend_static
   gateway:
     image: vhg860/kittygram_gateway
     env_file: .env
     volumes:
-      - static:/static/
-      - media:/app/media/
+      - static:/staticfiles/
+      - media:/media/
     ports:
       - 9000:80
     depends_on:
