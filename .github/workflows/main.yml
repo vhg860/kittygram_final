@@ -41,8 +41,6 @@ jobs:
         python -m flake8 backend/
         cd backend/
         python manage.py test
-    - name: Add Docker to PATH
-      run: echo "$HOME/.local/bin" >> $GITHUB_PATH
 
   build_and_push_to_docker_hub:
     name: Push Docker image to DockerHub
@@ -66,19 +64,16 @@ jobs:
           tags: vhg860/kittygram_backend:latest
   frontend_tests:
     runs-on: ubuntu-latest
-
     steps:
     - uses: actions/checkout@v3
     - name: Set up nodeJS
       uses: actions/setup-node@v3
       with:
         node-version: 18
-
     - name: Install dependencies
       run: |
         cd frontend/
         npm ci
-
     - name: Test frontend
       run: |
         cd frontend/
@@ -139,7 +134,7 @@ jobs:
         key: ${{ secrets.SSH_KEY }}
         passphrase: ${{ secrets.SSH_PASSPHRASE }}
         source: "docker-compose.production.yml"
-        target: "taski"
+        target: "kittygram"
     - name: Executing remote ssh commands to deploy
       uses: appleboy/ssh-action@master
       with:
