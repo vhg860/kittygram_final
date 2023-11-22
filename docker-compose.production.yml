@@ -22,13 +22,13 @@ services:
     env_file: .env
     command: cp -r /app/build/. /frontend_static/
     volumes:
-      - static:/frontend_static
+      - static:/frontend_static/
   gateway:
     image: vhg860/kittygram_gateway
     env_file: .env
     volumes:
       - static:/staticfiles/
-      - media:/media/
+      - media:/media
     ports:
       - 9000:80
     depends_on:
