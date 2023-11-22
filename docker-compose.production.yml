@@ -17,8 +17,6 @@ services:
     volumes:
       - static:/static
       - media:/app/media
-    depends_on:
-      - db
   frontend:
     image: vhg860/kittygram_frontend/
     env_file: .env
@@ -30,8 +28,6 @@ services:
     env_file: .env
     volumes:
       - static:/static
-      - media:/media
-    depends_on:
-      - backend
+      - media:/app/media
     ports:
       - 9000:80
